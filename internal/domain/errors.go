@@ -16,14 +16,6 @@ var (
 	ErrAlreadyExists     = errors.New("already exists")
 )
 
-func ConstraintFailure(operation string, err error) error {
-	if err == nil {
-		return nil
-	}
-	message := fmt.Sprintf("%s failed: %v", operation, err)
-	return errors.New(message)
-}
-
 type FieldError struct {
 	Field   string
 	Message string

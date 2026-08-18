@@ -196,10 +196,7 @@ func (q *queries) InsertReading(ctx context.Context, reading domain.TemperatureR
         temperature_millicelsius, recorded_at, received_at) VALUES(?, ?, ?, ?, ?, ?, ?)`, reading.ID,
 		reading.ShipmentID, reading.SensorID, reading.Sequence, reading.Temperature,
 		formatTime(reading.RecordedAt), formatTime(reading.ReceivedAt))
-	if err != nil {
-		return domain.ConstraintFailure("insert temperature reading", err)
-	}
-	return nil
+	return translateError("insert temperature reading", err)
 }
 
 func (q *queries) InsertExcursion(ctx context.Context, excursion domain.Excursion) error {
